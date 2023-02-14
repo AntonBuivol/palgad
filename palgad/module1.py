@@ -1,4 +1,4 @@
-def lisa_palgad(i:list,p:list):
+def lisa_palk(i:list,p:list):
     """Inimese ja tema palga lisamine nimekirja
     :param list i: Inimeste järend
     :param list p: Palgade järend
@@ -13,7 +13,7 @@ def lisa_palgad(i:list,p:list):
         p.append(palk)
     return i,p
 
-def Kustutamine(i:list,p:list):
+def kustutada(i:list,p:list):
     """Inimese ja tema palga eemaldamine nimekirjast
     :param list i: Inimeste järend
     :param list p: Palgade järend
@@ -58,40 +58,24 @@ def vähem_palk(i:list,p:list):
 
     return palk,nimi
 
-def soorteerimine(i:list,p:list):
+def tõusev_langev(i: list, p: list):
     """Sorteeri palga järgi
     :param list i: Inimeste järend
     :param list p: Palgade järend
     :rtype: int, str
     """
 
-    v=int(input("palk 1-kahaneb, 2-kasvab? "))
-    if v==1:
-        n=len(p)
-        for j in range(0,n-1):
-            for k in range(j+1,n):
-                if p[j]<p[k]:
-                    abi=p[j]
-                    p[j]=p[k]
-                    p[k]=abi
-                    abi=i[j]
-                    i[j]=i[k]
-                    i[k]=abi
-    elif v==2:
-        n=len(p)
-        for j in range(0,n-1):
-            for k in range(j+1,n):
-                if p[j]>p[k]:
-                    abi=p[j]
-                    p[j]=p[k]
-                    p[k]=abi
-                    abi=i[j]
-                    i[j]=i[k]
-                    i[k]=abi
+    v = int(input("palk 1-kahaneb, 2-kasvab? "))
+    n = len(p)
+    for j in range(n - 1):
+        for k in range(j + 1, n):
+            if (v == 1 and p[j] < p[k]) or (v == 2 and p[j] > p[k]):
+                p[j], p[k] = p[k], p[j]
+                i[j], i[k] = i[k], i[j]
 
-    return i,p
+    return i, p
 
-def vordsed_palgad(i:list,p:list):
+def sama_palk(i:list,p:list):
     """Sorteeri palga järgi
     :param list i: Inimeste järend
     :param list p: Palgade järend
@@ -109,7 +93,7 @@ def vordsed_palgad(i:list,p:list):
             print(nimi,"saab kätte",palk)
     return i,p
 
-def nimi_(i:list,p:list):
+def palgaotsing(i:list,p:list):
     nimi=input("Kelle palk tahad leia? \n")
     while nimi not in i:
         nimi=input("Palun kirjuta õige nimi \n")
@@ -127,7 +111,7 @@ def nimi_(i:list,p:list):
         print(f'{nimi} saab {p[ind]} \n')
     return i,p
 
-def enam_vähem(i:list, p:list):
+def enam_vähem(i:list,p:list):
     a=int(input("1-surem, 2-vähem "))
     palgad=int(input("print palk "))
     list = []
@@ -156,7 +140,7 @@ def top(i:list,p:list):
         kopia.pop(ind)
         kopia.insert(ind,min(p)+1)
 
-def keskmine(i:list,p:list): 
+def Keskmine(i:list,p:list): 
     kesk=sum(p)/len(p)
     print(f"Keskmine palk on {kesk}")
     for j in range(len(i)):
@@ -217,7 +201,7 @@ def sorteerimine(i:list,p:list):
             p.reverse()
     return i,p 
 
-def kustutada(i:list,p:list):
+def emalda(i:list,p:list):
 
     i1=[] 
     p1=[]
@@ -245,7 +229,7 @@ def aasta(i:list,p:list):
         p[j] = p[j] * 1.05 ** T
     return i,p
 
-def ümber_nimetada(lst):
+def Nimeta_ümber(lst):
     for i in range(2, len(lst), 3):
         uusnimi = input(f"Millise nimele vahetada {lst[i]}? ")
         lst[i] = uusnimi
